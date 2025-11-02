@@ -1,5 +1,4 @@
 import axios_api from "./axios";
-import { BASE_URL } from "./config";
 
 const host = `/buyer/partorder`;
 
