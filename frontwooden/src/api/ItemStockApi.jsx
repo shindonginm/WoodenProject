@@ -23,12 +23,3 @@ export const adjustItemStock = async ({ itemNo, delta }) => {
   });
   return data;
 };
-
-
-// 컨트롤러가 "/{itemNo}/produce" 형태라면 위 두 함수 대신 이걸 쓰세요.
-// export const postProduce = ({ itemNo, qty }) =>
-//   axios_api.post(`${host}/${itemNo}/produce`, { qty: Number(qty) }).then(r => r.data);
-
-// export const postSell = ({ itemNo, qty }) =>
-//   axios_api.post(`${host}/${itemNo}/sell`, { qty: Number(qty) }).then(r => r.data);
-
