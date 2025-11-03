@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface ItemStockRepository extends JpaRepository<ItemStock, Long> {
 
     @EntityGraph(attributePaths = "item")
-    @Query("select s from ItemStock s")   // ← alias를 s로 (is는 예약어 혼동 방지)
+    @Query("select s from ItemStock s")
     List<ItemStock> findAllWithItem();
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)

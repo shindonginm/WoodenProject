@@ -20,11 +20,4 @@ public class PlanRequestDTO {
     private LocalDate planStartDate;
     private LocalDate planEndDate;
 
-    // ✅ 종료일이 시작일보다 빠르면 거부
-    @AssertTrue(message = "생산종료일은 시작일과 같거나 이후여야 합니다.")
-    public boolean isValidDateRange() {
-        return planStartDate != null
-                && planEndDate != null
-                && !planEndDate.isBefore(planStartDate);
-    }
 }
