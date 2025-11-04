@@ -23,7 +23,7 @@ public class PlannedOrder {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "demand_id")
-    private DemandLedger demand;
+    private DemandPlan demand;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_no")
@@ -57,7 +57,7 @@ public class PlannedOrder {
         this.deliDate = deliDate;
     }
 
-    public void changeDemand(DemandLedger demand) {
+    public void changeDemand(DemandPlan demand) {
         this.demand = demand;
     }
 
