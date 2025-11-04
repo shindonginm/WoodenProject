@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DemandLedger {
+public class DemandPlan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
