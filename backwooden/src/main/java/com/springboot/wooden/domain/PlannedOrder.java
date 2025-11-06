@@ -8,8 +8,8 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "planned_order")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class PlannedOrder {
 
@@ -45,25 +45,15 @@ public class PlannedOrder {
     @Column(name = "remark")
     private String remark;
 
-    public void changeStatus(String status) {
-        this.status = status;
-    }
+    public void changeStatus(String status) { this.status = status; }
 
-    public void changeQty(Integer qty) {
-        this.qty = qty;
-    }
+    public void changeQty(Integer qty) { this.qty = qty; }
 
-    public void changeDeliDate(LocalDate deliDate) {
-        this.deliDate = deliDate;
-    }
+    public void changeDeliDate(LocalDate deliDate) { this.deliDate = deliDate; }
 
-    public void changeDemand(DemandPlan demand) {
-        this.demand = demand;
-    }
+    public void changeDemand(DemandPlan demand) { this.demand = demand; }
 
-    public void changeRemark(String remark) {
-        this.remark = remark;
-    }
+    public void changeRemark(String remark) { this.remark = remark; }
 
     public void changeToPlan(Item item) {
         this.planType = "PLAN";
