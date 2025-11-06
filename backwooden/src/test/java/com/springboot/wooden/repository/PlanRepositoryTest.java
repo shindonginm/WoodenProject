@@ -26,7 +26,6 @@ class PlanRepositoryTest {
     // 1) 생성: 기존 Item FK에 Plan 저장
     // ----------------------------------------------------------------------
     @Test
-    @DisplayName("Plan 생성: getReferenceById로 FK만 꽂아서 저장")
     void createPlan() {
         Item item = itemRepository.getReferenceById(itemNoA);
 

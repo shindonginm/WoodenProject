@@ -240,7 +240,7 @@ const onPatchOrderState = async (id, next) => {
             const need = Number(prevRow?.orderQty ?? 0);
             if (cur < need) {
               // 서버와 같은 톤의 메시지로 즉시 차단
-              throw new Error(`재고 부족 : 현재 ${cur} 개. 필요 ${need} 개 부품 재고가 필요합니다`);
+              throw new Error(`재고 부족 : 현재 부품${stock.itemName}이 ${cur} 개. 필요 ${need} 개 부품 재고가 필요합니다`);
             }
           }
         }

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getItemStockList } from "../../api/ItemStockAPI.jsx";
+import { getItemStockList } from "../../api/ItemStockApi.jsx";
 import { getCompletedPlanList } from "../../api/PlanListAPI.jsx";
 import { ItemStockColumns } from "../../arrays/ItemStockArrays.jsx";
 import { PlanListArrays as CompletedPlanArrays } from "../../arrays/PlanArrays.jsx";
