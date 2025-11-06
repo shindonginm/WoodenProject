@@ -22,8 +22,9 @@ public class DemandPlan {
     @JoinColumn(name = "item_no")
     private Item item;
 
-    @Column(name = "required_date", nullable = false)
-    private LocalDate requiredDate;
+    // 납기일: deli_date
+    @Column(name = "deli_date", nullable = false)
+    private LocalDate deliDate;
 
     @Column(name = "demand_qty", nullable = false)
     private Integer qty;
@@ -41,8 +42,8 @@ public class DemandPlan {
         this.item = item;
     }
 
-    public void changeRequiredDate(LocalDate requiredDate) {
-        this.requiredDate = requiredDate;
+    public void changeDeliDate(LocalDate deliDate) {
+        this.deliDate = deliDate;
     }
 
     public void changeQty(Integer qty) {
