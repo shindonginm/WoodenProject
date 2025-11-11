@@ -1,8 +1,6 @@
 package com.springboot.wooden.service;
 
-import com.springboot.wooden.domain.Buyer;
-import com.springboot.wooden.domain.Part;
-import com.springboot.wooden.domain.PartOrder;
+import com.springboot.wooden.domain.*;
 import com.springboot.wooden.dto.PartOrderRequestDto;
 import com.springboot.wooden.dto.PartOrderResponseDto;
 import com.springboot.wooden.repository.BuyerRepository;
@@ -109,16 +107,52 @@ public class PartOrderServiceImpl implements PartOrderService {
     }
 
     /** 재고행 없으면 0으로 생성 (공유PK = partNo) */
-    private com.springboot.wooden.domain.PartStock getOrCreatePartStock(Part part) {
+    private PartStock getOrCreatePartStock(Part part) {
         Long partNo = part.getPartNo();
         return partStockRepository.findById(partNo)
                 .orElseGet(() -> partStockRepository.save(
-                        com.springboot.wooden.domain.PartStock.builder()
+                        PartStock.builder()
                                 .psNo(partNo)
                                 .part(part)
                                 .psQty(0)
                                 .build()
                 ));
+    }
+
+    @Override
+    @Transactional
+    public PartOrderResponseDto addFromPlan(PlannedOrder po) {
+
+        if (!"BUYER".equals(po.getPlanType())) {
+            throw new IllegalArgumentException("BUYER 타입 계획만 발주로 생성할 수 있습니다. planType=" + po.getPlanType());
+        }
+
+        var part = po.getPart();
+        if (part == null) {
+            throw new IllegalStateException("BUYER 계획인데 part 정보가 없습니다. planId=" + po.getId());
+        }
+
+        var buyer = part.getBuyer();
+
+        if (buyer == null) {
+            throw new IllegalStateException("부품에 연결된 구매처가 없습니다. partNo=" + part.getPartNo());
+        }
+
+        int qty = po.getQty();
+        int unitPrice = part.getPartPrice();
+        int totalPrice = unitPrice * qty;
+
+        PartOrderRequestDto dto = PartOrderRequestDto.builder()
+                .buyerNo(buyer.getBuyerNo())
+                .partNo(part.getPartNo())
+                .poQty(qty)
+                .poPrice(totalPrice)
+                .poState("입고대기")
+                .poDate(po.getDeliDate())
+                .buyerAddr(buyer.getBuyerAddr())
+                .build();
+
+        return addPartOrder(dto);
     }
 
     private PartOrderResponseDto toDto(PartOrder po) {

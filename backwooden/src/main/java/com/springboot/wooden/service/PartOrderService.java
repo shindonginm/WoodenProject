@@ -1,5 +1,6 @@
 package com.springboot.wooden.service;
 
+import com.springboot.wooden.domain.PlannedOrder;
 import com.springboot.wooden.dto.PartOrderRequestDto;
 import com.springboot.wooden.dto.PartOrderResponseDto;
 
@@ -11,4 +12,5 @@ public interface PartOrderService {
     PartOrderResponseDto updatePartOrder(Long poNo, PartOrderRequestDto dto);
     void deletePartOrder(Long poNo);
     List<PartOrderResponseDto> getCompletedList();
+    PartOrderResponseDto addFromPlan(PlannedOrder plannedOrder);
 }
