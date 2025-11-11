@@ -11,6 +11,4 @@ public interface DemandPlanRepository extends JpaRepository<DemandPlan, Long> {
 
     @EntityGraph(attributePaths = {"item"})
     List<DemandPlan> findByDeliDateBetween(LocalDate from, LocalDate to);
-
-    List<DemandPlan> findByItem_ItemNo(Long itemNo);
 }

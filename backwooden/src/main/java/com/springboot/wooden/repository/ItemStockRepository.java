@@ -18,4 +18,8 @@ public interface ItemStockRepository extends JpaRepository<ItemStock, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select s from ItemStock s where s.item.itemNo = :itemNo")
     Optional<ItemStock> findByItemNoForUpdate(@Param("itemNo") Long itemNo);
+
+    @EntityGraph(attributePaths = "item")
+    Optional<ItemStock> findByItem_ItemNo(Long itemNo);
+
 }
