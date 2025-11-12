@@ -2,7 +2,6 @@ package com.springboot.wooden.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -18,17 +17,14 @@ public class WorkOrder {
     @Column(name = "wo_no")
     private Long id;
 
-    // 어떤 계획에서 나온 작업지시인가
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "plan_id")
     private PlannedOrder plannedOrder;
 
-    // 생산할 품목
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_no")
+    @JoinColumn(name = "item_no", nullable = false)
     private Item item;
 
-    // 생산 수량
     @Column(name = "wo_qty", nullable = false)
     private Integer qty;
 
@@ -41,19 +37,8 @@ public class WorkOrder {
     @Column(name = "remark")
     private String remark;
 
-    public void changeStatus(String status) {
-        this.status = status;
-    }
-
-    public void changeQty(Integer qty) {
-        this.qty = qty;
-    }
-
-    public void changeDeliDate(LocalDate deliDate) {
-        this.deliDate = deliDate;
-    }
-
-    public void changeRemark(String remark) {
-        this.remark = remark;
-    }
+    public void changeStatus(String status) { this.status = status; }
+    public void changeQty(Integer qty) { this.qty = qty; }
+    public void changeDeliDate(LocalDate deliDate) { this.deliDate = deliDate; }
+    public void changeRemark(String remark) { this.remark = remark; }
 }

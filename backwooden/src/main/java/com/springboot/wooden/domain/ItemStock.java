@@ -20,8 +20,8 @@ import java.util.Objects;
 public class ItemStock {
 
     @Id
-    @Column(name = "item_no")    // PK == FK
-    private Long itemNo;         // 공유 PK (== Item.itemNo)
+    @Column(name = "item_no")
+    private Long itemNo;
 
     // Item 과 1:1 관계
     @OneToOne(fetch = FetchType.LAZY, optional = false)
