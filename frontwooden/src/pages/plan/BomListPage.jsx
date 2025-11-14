@@ -5,7 +5,7 @@ import { useCRUD } from "../../hook/useCRUD.jsx";
 import ModalComponent from "../../components/ModalComponent";
 import ButtonComponent from "../../components/ButtonComponent.jsx";
 import BackButtonComponent from "../../components/BackButtonComponent.jsx";
-import SearchComponent from "../../components/SearchComponent.jsx"; // ✅ 추가
+import SearchComponent from "../../components/SearchComponent.jsx";
 
 import BomForm from "../../form/plan/BomForm.jsx";
 
@@ -60,7 +60,7 @@ const BomListPage = () => {
     keyField: "bomId",
   });
 
-  // ✅ 검색 상태: 즉시 입력값(q) vs 디바운스 적용값(term)
+  // 검색 상태: 즉시 입력값(q) vs 디바운스 적용값(term)
   const [q, setQ] = useState("");
   const [term, setTerm] = useState("");
 

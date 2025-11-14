@@ -14,6 +14,8 @@ export const OrderList = [
     {id:1, name:"상품",path:"plan/itemlist"},
     {id:2, name:"생산",path:"plan/planlist"},
     {id:3, name:"BOM", path:"plan/bomlist"},
+    { id: 4, name: "APS계획", path: "plan/aps" },
+    { id: 5, name: "작업지시", path: "plan/workorder" }
   ]
   export const StockList = [
     {id :1, name:"생산완료재고",path:"stock/stocklist"},
@@ -48,7 +50,3 @@ export const OrderList = [
     "ID":"admin",
     "Password":"1234"
   }
-
-
-
-
