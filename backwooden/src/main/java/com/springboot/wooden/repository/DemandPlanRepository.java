@@ -11,4 +11,6 @@ public interface DemandPlanRepository extends JpaRepository<DemandPlan, Long> {
 
     @EntityGraph(attributePaths = {"item"})
     List<DemandPlan> findByDeliDateBetween(LocalDate from, LocalDate to);
+
+    void deleteByItem_ItemNoAndSourceType(Long itemNo, String sourceType);
 }
