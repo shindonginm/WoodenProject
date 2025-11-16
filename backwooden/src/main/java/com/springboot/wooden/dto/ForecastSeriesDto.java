@@ -5,6 +5,7 @@ import java.util.List;
 
 @Data
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ForecastSeriesDto {
