@@ -9,17 +9,27 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/forecast")
 @RequiredArgsConstructor
 public class ForecastController {
-    // 비즈니스 로직은 전부 Service로 위임
+
     private final ForecastService forecastService;
 
     /**
-     * 예: GET /api/forecast/series?itemNo=1&h=12
-     * itemNo = item번호 h = 예측할 주의 수 (적지 않으면 12주가 디폴트)
-     * - history(주간, 빈 주=0) + forecast(mean/p10/p50/p90) 동시 반환
+     * 예측 그래프용 (메인페이지)
+     * GET /api/forecast/series?itemNo=1&h=12
      */
     @GetMapping("/series")
     public ForecastSeriesDto getSeries(@RequestParam Long itemNo,
                                        @RequestParam(name = "h", defaultValue = "12") int horizonWeeks) {
         return forecastService.getForecastSeries(itemNo, horizonWeeks);
+    }
+
+    /**
+     * 🔹 예측 결과를 DemandPlan(수요 레저)에 저장
+     * POST /api/forecast/apply?itemNo=1&h=12
+     * 반환: 생성된 DemandPlan 건수(int)
+     */
+    @PostMapping("/apply")
+    public int applyForecastToDemand(@RequestParam Long itemNo,
+                                     @RequestParam(name = "h", defaultValue = "12") int horizonWeeks) {
+        return forecastService.applyForecastToDemand(itemNo, horizonWeeks);
     }
 }
